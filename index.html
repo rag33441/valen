@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You ❤️</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Floating hearts container -->
+<div id="hearts"></div>
+
+<!-- FIRST SCREEN -->
+<div class="card" id="questionCard">
+  <h1>Will you be my Valentine? ❤️</h1>
+  <p class="sub">I made something special for you</p>
+
+  <div class="buttons">
+    <button class="yes" id="yesBtn" onclick="revealLove()">Yes</button>
+    <button class="no" disabled>NO</button>
+  </div>
+</div>
+
+<!-- SECOND SCREEN -->
+<div class="card hidden" id="loveCard">
+  <img src="ourimage.jpeg" class="photo" alt="Us">
+
+  <h1>Happy Valentine’s Day ❤️</h1>
+
+  <p class="message">
+    Dear <span id="NIKKU"></span>,<br>
+    every moment with you means more than words.
+  </p>
+
+  <p class="from">Love, <span>Raj</span></p>
+</div>
+
+<audio id="bgMusic" src="bgmusic.mp3" preload="auto" loop></audio>
+
+<script>
+  /* 🔴 CHANGE NAME HERE */
+  const partnerName = "NIKKU";
+  document.getElementById("NIKKU").innerText = partnerName;
+
+  function revealLove() {
+    document.getElementById("yesBtn").disabled = "true";
+   
+    document.getElementById("questionCard").style.display = "none";
+    document.getElementById("loveCard").classList.remove("hidden");
+    document.getElementById("bgMusic").play();
+    startHearts();
+  }
+
+  function startHearts() {
+    const hearts = document.getElementById("hearts");
+
+    setInterval(() => {
+      const heart = document.createElement("span");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+      hearts.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }, 350);
+  }
+</script>
+<div id="hearts"></div>
+</body>
+</html>
